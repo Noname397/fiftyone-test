@@ -1,0 +1,3795 @@
+{
+    "models": [
+        {
+            "base_name": "alexnet-imagenet-torch",
+            "base_filename": "alexnet-owt-4df8aa71.pth",
+            "version": null,
+            "description": "AlexNet model architecture from `One weird trick for parallelizing convolutional neural networks <https://arxiv.org/abs/1404.5997>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 244418560,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.alexnet.alexnet",
+                    "entrypoint_args": {
+                        "weights": "AlexNet_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "deeplabv3-resnet101-coco-torch",
+            "base_filename": "deeplabv3_resnet101_coco-586e9e4e.pth",
+            "version": null,
+            "description": "DeepLabV3 model from `Rethinking Atrous Convolution for Semantic Image Segmentation <https://arxiv.org/abs/1706.05587>`_ with ResNet-101 backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 244545539,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/deeplabv3_resnet101_coco-586e9e4e.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.segmentation.deeplabv3_resnet101",
+                    "entrypoint_args": {
+                        "weights": "DeepLabV3_ResNet101_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor",
+                    "mask_targets_path": "{{eta-resources}}/voc-labels.txt",
+                    "image_dim": 520,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225]
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "segment-anything-vitb-torch",
+            "base_filename": "sam_vit_b_01ec64.pth",
+            "version": null,
+            "description": "Segment Anything Model (SAM) from `Segment Anything <https://arxiv.org/abs/2304.02643>`_ with ViT-B/16 backbone trained on SA-1B",
+            "source": "https://segment-anything.com",
+            "size_bytes": 732512,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_b_01ec64.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam.SegmentAnythingModel",
+                "config": {
+                    "entrypoint_fcn": "segment_anything.build_sam.build_sam_vit_b",
+                    "entrypoint_args": {},
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "segment-anything"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "sa-1b", "torch", "zero-shot"],
+            "date_added": "2023-05-12 11:40:51"
+        },
+        {
+            "base_name": "segment-anything-vith-torch",
+            "base_filename": "sam_vit_h_4b8939.pth",
+            "version": null,
+            "description": "Segment Anything Model (SAM) from `Segment Anything <https://arxiv.org/abs/2304.02643>`_ with ViT-H/16 backbone trained on SA-1B",
+            "source": "https://segment-anything.com",
+            "size_bytes": 5008896,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_h_4b8939.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam.SegmentAnythingModel",
+                "config": {
+                    "entrypoint_fcn": "segment_anything.build_sam.build_sam_vit_h",
+                    "entrypoint_args": {},
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "segment-anything"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "sa-1b", "torch", "zero-shot"],
+            "date_added": "2023-05-12 11:40:51"
+        },
+        {
+            "base_name": "segment-anything-vitl-torch",
+            "base_filename": "sam_vit_l_0b3195.pth",
+            "version": null,
+            "description": "Segment Anything Model (SAM) from `Segment Anything <https://arxiv.org/abs/2304.02643>`_ with ViT-L/16 backbone trained on SA-1B",
+            "source": "https://segment-anything.com",
+            "size_bytes": 2440480,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything/sam_vit_l_0b3195.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam.SegmentAnythingModel",
+                "config": {
+                    "entrypoint_fcn": "segment_anything.build_sam.build_sam_vit_l",
+                    "entrypoint_args": {},
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "segment-anything"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "sa-1b", "torch", "zero-shot"],
+            "date_added": "2023-05-12 11:40:51"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-tiny-image-torch",
+            "base_filename": "sam2_hiera_tiny_image.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_tiny.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2ImageModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_t.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-small-image-torch",
+            "base_filename": "sam2_hiera_small_image.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_small.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2ImageModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_s.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-base-plus-image-torch",
+            "base_filename": "sam2_hiera_base_plus_image.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_base_plus.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2ImageModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_b+.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-large-image-torch",
+            "base_filename": "sam2_hiera_large_image.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_large.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2ImageModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_l.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-tiny-video-torch",
+            "base_filename": "sam2_hiera_tiny_video.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_tiny.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2VideoModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2_video_predictor",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_t.yaml" }
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot", "video"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-small-video-torch",
+            "base_filename": "sam2_hiera_small_video.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_small.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2VideoModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2_video_predictor",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_s.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot", "video"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-base-plus-video-torch",
+            "base_filename": "sam2_hiera_base_plus_video.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_base_plus.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2VideoModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2_video_predictor",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_b+.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot", "video"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "segment-anything-2-hiera-large-video-torch",
+            "base_filename": "sam2_hiera_large_video.pt",
+            "version": null,
+            "description": "Segment Anything Model 2 (SAM2) from `SAM2: Segment Anything in Images and Videos <https://arxiv.org/abs/2408.00714>`_",
+            "source": "https://ai.meta.com/sam2/",
+            "size_bytes": 155906050,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://dl.fbaipublicfiles.com/segment_anything_2/072824/sam2_hiera_large.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.sam2.SegmentAnything2VideoModel",
+                "config": {
+                    "entrypoint_fcn": "sam2.build_sam.build_sam2_video_predictor",
+                    "entrypoint_args": { "model_cfg": "sam2_hiera_l.yaml" },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segment-anything", "torch", "zero-shot", "video"],
+            "date_added": "2024-08-05 14:38:20"
+        },
+        {
+            "base_name": "deeplabv3-resnet50-coco-torch",
+            "base_filename": "deeplabv3_resnet50_coco-cd0a2569.pth",
+            "version": null,
+            "description": "DeepLabV3 model from `Rethinking Atrous Convolution for Semantic Image Segmentation <https://arxiv.org/abs/1706.05587>`_ with ResNet-50 backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 168312152,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/deeplabv3_resnet50_coco-cd0a2569.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.segmentation.deeplabv3_resnet50",
+                    "entrypoint_args": {
+                        "weights": "DeepLabV3_ResNet50_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor",
+                    "mask_targets_path": "{{eta-resources}}/voc-labels.txt",
+                    "image_dim": 520,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225]
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "densenet121-imagenet-torch",
+            "base_filename": "densenet121-a639ec97.pth",
+            "version": null,
+            "description": "Densenet-121 model from `Densely Connected Convolutional Networks <https://arxiv.org/pdf/1608.06993.pdf>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 32342954,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/densenet121-a639ec97.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.densenet.densenet121",
+                    "entrypoint_args": {
+                        "weights": "DenseNet121_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "densenet161-imagenet-torch",
+            "base_filename": "densenet161-8d451a50.pth",
+            "version": null,
+            "description": "Densenet-161 model from `Densely Connected Convolutional Networks <https://arxiv.org/pdf/1608.06993.pdf>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 115730790,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/densenet161-8d451a50.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.densenet.densenet161",
+                    "entrypoint_args": {
+                        "weights": "DenseNet161_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "densenet169-imagenet-torch",
+            "base_filename": "densenet169-b2777c0a.pth",
+            "version": null,
+            "description": "Densenet-169 model from `Densely Connected Convolutional Networks <https://arxiv.org/pdf/1608.06993.pdf>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 57365526,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/densenet169-b2777c0a.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.densenet.densenet169",
+                    "entrypoint_args": {
+                        "weights": "DenseNet169_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "densenet201-imagenet-torch",
+            "base_filename": "densenet201-c1103571.pth",
+            "version": null,
+            "description": "Densenet-201 model from `Densely Connected Convolutional Networks <https://arxiv.org/pdf/1608.06993.pdf>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 81131730,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/densenet201-c1103571.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.densenet.densenet201",
+                    "entrypoint_args": {
+                        "weights": "DenseNet201_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "faster-rcnn-resnet50-fpn-coco-torch",
+            "base_filename": "fasterrcnn_resnet50_fpn_coco-258fb6c6.pth",
+            "version": null,
+            "description": "Faster R-CNN model from `Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks <https://arxiv.org/abs/1506.01497>`_ with ResNet-50 FPN backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 167502836,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/fasterrcnn_resnet50_fpn_coco-258fb6c6.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.detection.faster_rcnn.fasterrcnn_resnet50_fpn",
+                    "entrypoint_args": {
+                        "weights": "FasterRCNN_ResNet50_FPN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.DetectorOutputProcessor",
+                    "labels_path": "{{eta-resources}}/ms-coco-labels.txt",
+                    "confidence_thresh": 0.3
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "fcn-resnet101-coco-torch",
+            "base_filename": "fcn_resnet101_coco-7ecb50ca.pth",
+            "version": null,
+            "description": "FCN model from `Fully Convolutional Networks for Semantic Segmentation <https://arxiv.org/abs/1411.4038>`_ with ResNet-101 backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 217800805,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/fcn_resnet101_coco-7ecb50ca.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.segmentation.fcn_resnet101",
+                    "entrypoint_args": {
+                        "weights": "FCN_ResNet101_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor",
+                    "mask_targets_path": "{{eta-resources}}/voc-labels.txt",
+                    "image_dim": 520,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225]
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "fcn-resnet50-coco-torch",
+            "base_filename": "fcn_resnet50_coco-1167a1af.pth",
+            "version": null,
+            "description": "FCN model from `Fully Convolutional Networks for Semantic Segmentation <https://arxiv.org/abs/1411.4038>`_ with ResNet-50 backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 141567418,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/fcn_resnet50_coco-1167a1af.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.segmentation.fcn_resnet50",
+                    "entrypoint_args": {
+                        "weights": "FCN_ResNet50_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.SemanticSegmenterOutputProcessor",
+                    "mask_targets_path": "{{eta-resources}}/voc-labels.txt",
+                    "image_dim": 520,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225]
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "googlenet-imagenet-torch",
+            "base_filename": "googlenet-1378be20.pth",
+            "version": null,
+            "description": "GoogLeNet (Inception v1) model from `Going Deeper with Convolutions <https://arxiv.org/abs/1409.4842>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 52147035,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/googlenet-1378be20.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.googlenet.googlenet",
+                    "entrypoint_args": {
+                        "weights": "GoogLeNet_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["scipy", "torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "inception-v3-imagenet-torch",
+            "base_filename": "inception_v3_google-1a9a5a14.pth",
+            "version": null,
+            "description": "Inception v3 model from `Rethinking the Inception Architecture for Computer Vision <https://arxiv.org/abs/1512.00567>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 108857766,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/inception_v3_google-1a9a5a14.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.inception.inception_v3",
+                    "entrypoint_args": {
+                        "weights": "Inception_V3_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_size": [299, 299],
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["scipy", "torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "keypoint-rcnn-resnet50-fpn-coco-torch",
+            "base_filename": "keypointrcnn_resnet50_fpn_coco-fc266e95.pth",
+            "version": null,
+            "description": "Keypoint R-CNN model from `Mask R-CNN <https://arxiv.org/abs/1703.06870>`_ with ResNet-50 FPN backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 237034793,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/keypointrcnn_resnet50_fpn_coco-fc266e95.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.detection.keypoint_rcnn.keypointrcnn_resnet50_fpn",
+                    "entrypoint_args": {
+                        "weights": "KeypointRCNN_ResNet50_FPN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.KeypointDetectorOutputProcessor",
+                    "labels_string": "other,person",
+                    "confidence_thresh": 0.3,
+                    "skeleton": {
+                        "labels": [
+                            "nose",
+                            "left eye",
+                            "right eye",
+                            "left ear",
+                            "right ear",
+                            "left shoulder",
+                            "right shoulder",
+                            "left elbow",
+                            "right elbow",
+                            "left wrist",
+                            "right wrist",
+                            "left hip",
+                            "right hip",
+                            "left knee",
+                            "right knee",
+                            "left ankle",
+                            "right ankle"
+                        ],
+                        "edges": [
+                            [11, 5, 3, 1, 0, 2, 4, 6, 12],
+                            [9, 7, 5, 6, 8, 10],
+                            [15, 13, 11, 12, 14, 16]
+                        ]
+                    }
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["keypoints", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "mask-rcnn-resnet50-fpn-coco-torch",
+            "base_filename": "maskrcnn_resnet50_fpn_coco-bf2d0c1e.pth",
+            "version": null,
+            "description": "Mask R-CNN model from `Mask R-CNN <https://arxiv.org/abs/1703.06870>`_ with ResNet-50 FPN backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 178090079,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/maskrcnn_resnet50_fpn_coco-bf2d0c1e.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.detection.mask_rcnn.maskrcnn_resnet50_fpn",
+                    "entrypoint_args": {
+                        "weights": "MaskRCNN_ResNet50_FPN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.InstanceSegmenterOutputProcessor",
+                    "labels_path": "{{eta-resources}}/ms-coco-labels.txt"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["instances", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "mnasnet0.5-imagenet-torch",
+            "base_filename": "mnasnet0.5_top1_67.823-3ffadce67e.pth",
+            "version": null,
+            "description": "MNASNet model from from `MnasNet: Platform-Aware Neural Architecture Search for Mobile <https://arxiv.org/abs/1807.11626>`_ with depth multiplier of 0.5 trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 9008489,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/mnasnet0.5_top1_67.823-3ffadce67e.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.mnasnet.mnasnet0_5",
+                    "entrypoint_args": {
+                        "weights": "MNASNet0_5_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.1"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "mnasnet1.0-imagenet-torch",
+            "base_filename": "mnasnet1.0_top1_73.512-f206786ef8.pth",
+            "version": null,
+            "description": "MNASNet model from `MnasNet: Platform-Aware Neural Architecture Search for Mobile <https://arxiv.org/abs/1807.11626>`_ with depth multiplier of 1.0 trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 17736997,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/mnasnet1.0_top1_73.512-f206786ef8.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.mnasnet.mnasnet1_0",
+                    "entrypoint_args": {
+                        "weights": "MNASNet1_0_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.1"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "mobilenet-v2-imagenet-torch",
+            "base_filename": "mobilenet_v2-b0353104.pth",
+            "version": null,
+            "description": "MobileNetV2 model from `MobileNetV2: Inverted Residuals and Linear Bottlenecks <https://arxiv.org/abs/1801.04381>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 14212972,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/mobilenet_v2-b0353104.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.mobilenet.mobilenet_v2",
+                    "entrypoint_args": {
+                        "weights": "MobileNet_V2_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.1"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnet101-imagenet-torch",
+            "base_filename": "resnet101-5d3b4d8f.pth",
+            "version": null,
+            "description": "ResNet-101 model from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 178728960,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnet101-5d3b4d8f.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnet101",
+                    "entrypoint_args": {
+                        "weights": "ResNet101_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnet152-imagenet-torch",
+            "base_filename": "resnet152-b121ed2d.pth",
+            "version": null,
+            "description": "ResNet-152 model from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 241530880,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnet152-b121ed2d.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnet152",
+                    "entrypoint_args": {
+                        "weights": "ResNet152_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnet18-imagenet-torch",
+            "base_filename": "resnet18-5c106cde.pth",
+            "version": null,
+            "description": "ResNet-18 model from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 46827520,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnet18-5c106cde.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnet18",
+                    "entrypoint_args": {
+                        "weights": "ResNet18_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnet34-imagenet-torch",
+            "base_filename": "resnet34-333f7ec4.pth",
+            "version": null,
+            "description": "ResNet-34 model from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 87306240,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnet34-333f7ec4.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnet34",
+                    "entrypoint_args": {
+                        "weights": "ResNet34_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnet50-imagenet-torch",
+            "base_filename": "resnet50-19c8e357.pth",
+            "version": null,
+            "description": "ResNet-50 model from `Deep Residual Learning for Image Recognition <https://arxiv.org/abs/1512.03385>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 102502400,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnet50-19c8e357.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnet50",
+                    "entrypoint_args": {
+                        "weights": "ResNet50_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnext101-32x8d-imagenet-torch",
+            "base_filename": "resnext101_32x8d-8ba56ff5.pth",
+            "version": null,
+            "description": "ResNeXt-101 32x8d model from `Aggregated Residual Transformations for Deep Neural Networks <https://arxiv.org/abs/1611.05431>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 356082095,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnext101_32x8d-8ba56ff5.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnext101_32x8d",
+                    "entrypoint_args": {
+                        "weights": "ResNeXt101_32X8D_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "resnext50-32x4d-imagenet-torch",
+            "base_filename": "resnext50_32x4d-7cdf4587.pth",
+            "version": null,
+            "description": "ResNeXt-50 32x4d model from `Aggregated Residual Transformations for Deep Neural Networks <https://arxiv.org/abs/1611.05431>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 100441675,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/resnext50_32x4d-7cdf4587.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.resnext50_32x4d",
+                    "entrypoint_args": {
+                        "weights": "ResNeXt50_32X4D_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "retinanet-resnet50-fpn-coco-torch",
+            "base_filename": "retinanet_resnet50_fpn_coco-eeacb38b.pth",
+            "version": null,
+            "description": "RetinaNet model from `Focal Loss for Dense Object Detection <https://arxiv.org/abs/1708.02002>`_ with ResNet-50 FPN backbone trained on COCO",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 136595076,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/retinanet_resnet50_fpn_coco-eeacb38b.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.detection.retinanet.retinanet_resnet50_fpn",
+                    "entrypoint_args": {
+                        "weights": "RetinaNet_ResNet50_FPN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.DetectorOutputProcessor",
+                    "labels_path": "{{eta-resources}}/ms-coco-labels.txt",
+                    "confidence_thresh": 0.3
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision>=0.8.0"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "shufflenetv2-0.5x-imagenet-torch",
+            "base_filename": "shufflenetv2_x0.5-f707e7126e.pth",
+            "version": null,
+            "description": "ShuffleNetV2 model from `ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design <https://arxiv.org/abs/1807.11164>`_ with 0.5x output channels trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 5538128,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/shufflenetv2_x0.5-f707e7126e.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.shufflenetv2.shufflenet_v2_x0_5",
+                    "entrypoint_args": {
+                        "weights": "ShuffleNet_V2_X0_5_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "shufflenetv2-1.0x-imagenet-torch",
+            "base_filename": "shufflenetv2_x1-5666bf0f80.pth",
+            "version": null,
+            "description": "ShuffleNetV2 model from `ShuffleNet V2: Practical Guidelines for Efficient CNN Architecture Design <https://arxiv.org/abs/1807.11164>`_ with 1.0x output channels trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 9218294,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/shufflenetv2_x1-5666bf0f80.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.shufflenetv2.shufflenet_v2_x1_0",
+                    "entrypoint_args": {
+                        "weights": "ShuffleNet_V2_X1_0_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "squeezenet-1.1-imagenet-torch",
+            "base_filename": "squeezenet1_1-f364aa15.pth",
+            "version": null,
+            "description": "SqueezeNet 1.1 model from `the official SqueezeNet repo <https://github.com/forresti/SqueezeNet/tree/master/SqueezeNet_v1.1>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 4966400,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/squeezenet1_1-f364aa15.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.squeezenet.squeezenet1_1",
+                    "entrypoint_args": {
+                        "weights": "SqueezeNet1_1_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225]
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["classification", "imagenet", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "squeezenet-imagenet-torch",
+            "base_filename": "squeezenet1_0-a815701f.pth",
+            "version": null,
+            "description": "SqueezeNet model from `SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and <0.5MB model size <https://arxiv.org/abs/1602.07360>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 5017600,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/squeezenet1_0-a815701f.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.squeezenet.squeezenet1_0",
+                    "entrypoint_args": {
+                        "weights": "SqueezeNet1_0_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225]
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["classification", "imagenet", "torch"],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg11-bn-imagenet-torch",
+            "base_filename": "vgg11_bn-6002323d.pth",
+            "version": null,
+            "description": "VGG-11 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ with batch normalization trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 531503671,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg11_bn-6002323d.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg11_bn",
+                    "entrypoint_args": {
+                        "weights": "VGG11_BN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg11-imagenet-torch",
+            "base_filename": "vgg11-bbd30ac9.pth",
+            "version": null,
+            "description": "VGG-11 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 531456000,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg11-bbd30ac9.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg11",
+                    "entrypoint_args": { "weights": "VGG11_Weights.DEFAULT" },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg13-bn-imagenet-torch",
+            "base_filename": "vgg13_bn-abd245e5.pth",
+            "version": null,
+            "description": "VGG-13 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ with batch normalization trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 532246301,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg13_bn-abd245e5.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg13_bn",
+                    "entrypoint_args": {
+                        "weights": "VGG13_BN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg13-imagenet-torch",
+            "base_filename": "vgg13-c768596a.pth",
+            "version": null,
+            "description": "VGG-13 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 532194478,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg13-c768596a.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg13",
+                    "entrypoint_args": { "weights": "VGG13_Weights.DEFAULT" },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg16-bn-imagenet-torch",
+            "base_filename": "vgg16_bn-6c64b313.pth",
+            "version": null,
+            "description": "VGG-16 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ with batch normalization trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 553507836,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg16_bn-6c64b313.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg16_bn",
+                    "entrypoint_args": {
+                        "weights": "VGG16_BN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg16-imagenet-torch",
+            "base_filename": "vgg16-397923af.pth",
+            "version": null,
+            "description": "VGG-16 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 553433881,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg16-397923af.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg16",
+                    "entrypoint_args": { "weights": "VGG16_Weights.DEFAULT" },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg19-bn-imagenet-torch",
+            "base_filename": "vgg19_bn-c79401a0.pth",
+            "version": null,
+            "description": "VGG-19 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ with batch normalization trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 574769405,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg19_bn-c79401a0.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg19_bn",
+                    "entrypoint_args": {
+                        "weights": "VGG19_BN_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "vgg19-imagenet-torch",
+            "base_filename": "vgg19-dcbb9e9d.pth",
+            "version": null,
+            "description": "VGG-19 model from `Very Deep Convolutional Networks for Large-Scale Image Recognition <https://arxiv.org/abs/1409.1556>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 574673361,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/vgg19-dcbb9e9d.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.vgg.vgg19",
+                    "entrypoint_args": { "weights": "VGG19_Weights.DEFAULT" },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<classifier.6"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "wide-resnet101-2-imagenet-torch",
+            "base_filename": "wide_resnet101_2-32ee1156.pth",
+            "version": null,
+            "description": "Wide ResNet-101-2 model from `Wide Residual Networks <https://arxiv.org/abs/1605.07146>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 254695146,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/wide_resnet101_2-32ee1156.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.wide_resnet101_2",
+                    "entrypoint_args": {
+                        "weights": "Wide_ResNet101_2_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "wide-resnet50-2-imagenet-torch",
+            "base_filename": "wide_resnet50_2-95faca4d.pth",
+            "version": null,
+            "description": "Wide ResNet-50-2 model from `Wide Residual Networks <https://arxiv.org/abs/1605.07146>`_ trained on ImageNet",
+            "source": "https://pytorch.org/vision/main/models.html",
+            "size_bytes": 138223492,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://download.pytorch.org/models/wide_resnet50_2-95faca4d.pth"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.zoo.models.torch.TorchvisionImageModel",
+                "config": {
+                    "entrypoint_fcn": "torchvision.models.resnet.wide_resnet50_2",
+                    "entrypoint_args": {
+                        "weights": "Wide_ResNet50_2_Weights.DEFAULT"
+                    },
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "labels_path": "{{eta-resources}}/imagenet-labels-no-background.txt",
+                    "image_min_dim": 224,
+                    "image_max_dim": 2048,
+                    "image_mean": [0.485, 0.456, 0.406],
+                    "image_std": [0.229, 0.224, 0.225],
+                    "embeddings_layer": "<fc"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "embeddings",
+                "logits",
+                "imagenet",
+                "torch"
+            ],
+            "date_added": "2020-12-11 13:45:51"
+        },
+        {
+            "base_name": "open-clip-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "OPEN CLIP text/image encoder from `Learning Transferable Visual Models From Natural Language Supervision <https://arxiv.org/abs/2103.00020>`_ trained on 400M text-image pairs",
+            "source": "https://github.com/mlfoundations/open_clip",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.open_clip.TorchOpenClipModel",
+                "config": {
+                    "entrypoint_fcn": "",
+                    "labels_path": "{{eta-resources}}/voc-labels.txt",
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "image_size": [224, 224],
+                    "image_mean": [0.48145466, 0.4578275, 0.40821073],
+                    "image_std": [0.26862954, 0.26130258, 0.27577711],
+                    "embeddings_layer": "visual",
+                    "tokenizer_base_filename": "clip_bpe_simple_vocab_16e6.txt.gz",
+                    "tokenizer_base_url": "https://github.com/openai/CLIP/raw/main/clip/bpe_simple_vocab_16e6.txt.gz",
+                    "text_prompt": "A photo of"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "open_clip_torch"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "logits",
+                "embeddings",
+                "torch",
+                "clip",
+                "zero-shot"
+            ],
+            "date_added": "2023-12-13 14:25:51"
+        },
+        {
+            "base_name": "classification-transformer-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "Hugging Face Transformers model for image classification",
+            "source": "https://huggingface.co/docs/transformers/tasks/image_classification",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.transformers.FiftyOneTransformerForImageClassification",
+                "config": {}
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "transformers"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "logits",
+                "embeddings",
+                "torch",
+                "transformers"
+            ],
+            "date_added": "2024-01-17 14:25:51"
+        },
+        {
+            "base_name": "detection-transformer-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "Hugging Face Transformers model for object detection",
+            "source": "https://huggingface.co/docs/transformers/tasks/object_detection",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.transformers.FiftyOneTransformerForObjectDetection",
+                "config": {}
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "transformers"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "detection",
+                "logits",
+                "embeddings",
+                "torch",
+                "transformers"
+            ],
+            "date_added": "2024-01-17 14:25:51"
+        },
+        {
+            "base_name": "segmentation-transformer-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "Hugging Face Transformers model for semantic segmentation",
+            "source": "https://huggingface.co/docs/transformers/tasks/semantic_segmentation",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.transformers.FiftyOneTransformerForSemanticSegmentation",
+                "config": {}
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "transformers"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "torch", "transformers"],
+            "date_added": "2024-01-17 14:25:51"
+        },
+        {
+            "base_name": "depth-estimation-transformer-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "Hugging Face Transformers model for monocular depth estimation",
+            "source": "https://huggingface.co/docs/transformers/tasks/monocular_depth_estimation",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.transformers.FiftyOneTransformerForDepthEstimation",
+                "config": {}
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "transformers"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["depth", "torch", "transformers"],
+            "date_added": "2024-02-06 14:25:51"
+        },
+        {
+            "base_name": "zero-shot-classification-transformer-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "Hugging Face Transformers model for zero-shot image classification",
+            "source": "https://huggingface.co/docs/transformers/tasks/zero_shot_image_classification",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.transformers.FiftyOneZeroShotTransformerForImageClassification",
+                "config": {}
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "transformers"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "logits",
+                "embeddings",
+                "torch",
+                "transformers",
+                "zero-shot"
+            ],
+            "date_added": "2024-01-17 14:25:51"
+        },
+        {
+            "base_name": "zero-shot-detection-transformer-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "Hugging Face Transformers model for zero-shot object detection",
+            "source": "https://huggingface.co/docs/transformers/tasks/zero_shot_object_detection",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.transformers.FiftyOneZeroShotTransformerForObjectDetection",
+                "config": {}
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "transformers"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "detection",
+                "logits",
+                "embeddings",
+                "torch",
+                "transformers",
+                "zero-shot"
+            ],
+            "date_added": "2024-01-17 14:25:51"
+        },
+        {
+            "base_name": "clip-vit-base32-torch",
+            "base_filename": "CLIP-ViT-B-32.pt",
+            "version": null,
+            "description": "CLIP text/image encoder from `Learning Transferable Visual Models From Natural Language Supervision <https://arxiv.org/abs/2103.00020>`_ trained on 400M text-image pairs",
+            "source": "https://github.com/openai/CLIP",
+            "size_bytes": 353976522,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://openaipublic.azureedge.net/clip/models/40d365715913c9da98579312b702a82c18be219cc2a73407c4526f58eba950af/ViT-B-32.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.clip.TorchCLIPModel",
+                "config": {
+                    "entrypoint_fcn": "",
+                    "labels_path": "{{eta-resources}}/voc-labels.txt",
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "image_size": [224, 224],
+                    "image_mean": [0.48145466, 0.4578275, 0.40821073],
+                    "image_std": [0.26862954, 0.26130258, 0.27577711],
+                    "embeddings_layer": "visual",
+                    "tokenizer_base_filename": "clip_bpe_simple_vocab_16e6.txt.gz",
+                    "tokenizer_base_url": "https://github.com/openai/CLIP/raw/main/clip/bpe_simple_vocab_16e6.txt.gz",
+                    "context_length": 77,
+                    "text_prompt": "A photo of"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": [
+                "classification",
+                "logits",
+                "embeddings",
+                "torch",
+                "clip",
+                "zero-shot"
+            ],
+            "date_added": "2022-04-12 17:49:51"
+        },
+        {
+            "base_name": "dinov2-vits14-torch",
+            "description": "DINOv2: Learning Robust Visual Features without Supervision. Model: ViT-S/14 distilled",
+            "source": "https://github.com/facebookresearch/dinov2",
+            "size_bytes": 88283115,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "facebookresearch/dinov2",
+                        "model": "dinov2_vits14"
+                    },
+                    "image_patch_size": 14,
+                    "embeddings_layer": "head"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["embeddings", "torch"],
+            "date_added": "2023-07-31 10:17:51"
+        },
+        {
+            "base_name": "dinov2-vitb14-torch",
+            "description": "DINOv2: Learning Robust Visual Features without Supervision. Model: ViT-B/14 distilled",
+            "source": "https://github.com/facebookresearch/dinov2",
+            "size_bytes": 346378731,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "facebookresearch/dinov2",
+                        "model": "dinov2_vitb14"
+                    },
+                    "image_patch_size": 14,
+                    "embeddings_layer": "head"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["embeddings", "torch"],
+            "date_added": "2023-07-31 10:17:51"
+        },
+        {
+            "base_name": "dinov2-vitl14-torch",
+            "description": "DINOv2: Learning Robust Visual Features without Supervision. Model: ViT-L/14 distilled",
+            "source": "https://github.com/facebookresearch/dinov2",
+            "size_bytes": 1217586395,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "facebookresearch/dinov2",
+                        "model": "dinov2_vitl14"
+                    },
+                    "image_patch_size": 14,
+                    "embeddings_layer": "head"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["embeddings", "torch"],
+            "date_added": "2023-07-31 10:17:51"
+        },
+        {
+            "base_name": "dinov2-vitg14-torch",
+            "description": "DINOv2: Learning Robust Visual Features without Supervision. Model: ViT-g/14",
+            "source": "https://github.com/facebookresearch/dinov2",
+            "size_bytes": 4546108579,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "facebookresearch/dinov2",
+                        "model": "dinov2_vitg14"
+                    },
+                    "image_patch_size": 14,
+                    "embeddings_layer": "head"
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["embeddings", "torch"],
+            "date_added": "2023-07-31 10:17:51"
+        },
+        {
+            "base_name": "yolov5n-coco-torch",
+            "description": "Ultralytics YOLOv5n model trained on COCO",
+            "source": "https://pytorch.org/hub/ultralytics_yolov5",
+            "size_bytes": 7936,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "ultralytics/yolov5",
+                        "model": "yolov5n",
+                        "pretrained": true
+                    },
+                    "output_processor_cls": "fiftyone.utils.ultralytics.UltralyticsOutputProcessor",
+                    "raw_inputs": true
+                }
+            },
+            "requirements": {
+                "packages": ["torch>=1.7.0", "torchvision>=0.8.1"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2023-08-22 19:22:51"
+        },
+        {
+            "base_name": "yolov5s-coco-torch",
+            "description": "Ultralytics YOLOv5s model trained on COCO",
+            "source": "https://pytorch.org/hub/ultralytics_yolov5",
+            "size_bytes": 28928,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "ultralytics/yolov5",
+                        "model": "yolov5s",
+                        "pretrained": true
+                    },
+                    "output_processor_cls": "fiftyone.utils.ultralytics.UltralyticsOutputProcessor",
+                    "raw_inputs": true
+                }
+            },
+            "requirements": {
+                "packages": ["torch>=1.7.0", "torchvision>=0.8.1"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2023-08-22 19:22:51"
+        },
+        {
+            "base_name": "yolov5m-coco-torch",
+            "description": "Ultralytics YOLOv5m model trained on COCO",
+            "source": "https://pytorch.org/hub/ultralytics_yolov5",
+            "size_bytes": 83872,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "ultralytics/yolov5",
+                        "model": "yolov5m",
+                        "pretrained": true
+                    },
+                    "output_processor_cls": "fiftyone.utils.ultralytics.UltralyticsOutputProcessor",
+                    "raw_inputs": true
+                }
+            },
+            "requirements": {
+                "packages": ["torch>=1.7.0", "torchvision>=0.8.1"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2023-08-22 19:22:51"
+        },
+        {
+            "base_name": "yolov5l-coco-torch",
+            "description": "Ultralytics YOLOv5l model trained on COCO",
+            "source": "https://pytorch.org/hub/ultralytics_yolov5",
+            "size_bytes": 197504,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "ultralytics/yolov5",
+                        "model": "yolov5l",
+                        "pretrained": true
+                    },
+                    "output_processor_cls": "fiftyone.utils.ultralytics.UltralyticsOutputProcessor",
+                    "raw_inputs": true
+                }
+            },
+            "requirements": {
+                "packages": ["torch>=1.7.0", "torchvision>=0.8.1"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2023-08-22 19:22:51"
+        },
+        {
+            "base_name": "yolov8n-coco-torch",
+            "base_filename": "yolov8n-coco.pt",
+            "description": "Ultralytics YOLOv8n model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 6534387,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8n.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8s-coco-torch",
+            "base_filename": "yolov8s-coco.pt",
+            "description": "Ultralytics YOLOv8s model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 22573363,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8s.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8m-coco-torch",
+            "base_filename": "yolov8m-coco.pt",
+            "description": "Ultralytics YOLOv8m model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 52117635,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8m.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8l-coco-torch",
+            "base_filename": "yolov8l-coco.pt",
+            "description": "Ultralytics YOLOv8l model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 87769683,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8l.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8x-coco-torch",
+            "base_filename": "yolov8x-coco.pt",
+            "description": "Ultralytics YOLOv8x model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 136867539,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8x.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8n-seg-coco-torch",
+            "base_filename": "yolov8n-seg-coco.pt",
+            "description": "Ultralytics YOLOv8n Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 7054355,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8n-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov8s-seg-coco-torch",
+            "base_filename": "yolov8s-seg-coco.pt",
+            "description": "Ultralytics YOLOv8s Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 23897299,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8s-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov8m-seg-coco-torch",
+            "base_filename": "yolov8m-seg-coco.pt",
+            "description": "Ultralytics YOLOv8m Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 54899779,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8m-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov8l-seg-coco-torch",
+            "base_filename": "yolov8l-seg-coco.pt",
+            "description": "Ultralytics YOLOv8l Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 92391859,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8l-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov8x-seg-coco-torch",
+            "base_filename": "yolov8x-seg-coco.pt",
+            "description": "Ultralytics YOLOv8x Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov8/",
+            "size_bytes": 144076467,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8x-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov9c-coco-torch",
+            "base_filename": "yolov9c-coco.pt",
+            "description": "YOLOv9-C model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov9/",
+            "size_bytes": 51802599,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov9c.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov9e-coco-torch",
+            "base_filename": "yolov9e-coco.pt",
+            "description": "YOLOv9-E model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov9/",
+            "size_bytes": 117530476,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov9e.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov9c-seg-coco-torch",
+            "base_filename": "yolov9c-seg-coco.pt",
+            "description": "YOLOv9-C Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov9/#__tabbed_1_2",
+            "size_bytes": 112406113,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov9c-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOSegmentationModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.42"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov9e-seg-coco-torch",
+            "base_filename": "yolov9e-seg-coco.pt",
+            "description": "YOLOv9-E Segmentation model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov9/#__tabbed_1_2",
+            "size_bytes": 243481823,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov9e-seg.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOSegmentationModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.42"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["segmentation", "coco", "torch", "yolo"],
+            "date_added": "2024-04-02 19:22:51"
+        },
+        {
+            "base_name": "yolov10n-coco-torch",
+            "base_filename": "yolov10n-coco.pt",
+            "description": "YOLOv10-N model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov10/",
+            "size_bytes": 5860383,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov10n.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "yolov10s-coco-torch",
+            "base_filename": "yolov10s-coco.pt",
+            "description": "YOLOv10-S model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov10/",
+            "size_bytes": 16623111,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov10s.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "yolov10m-coco-torch",
+            "base_filename": "yolov10m-coco.pt",
+            "description": "YOLOv10-M model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov10/",
+            "size_bytes": 33643667,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov10m.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "yolov10l-coco-torch",
+            "base_filename": "yolov10l-coco.pt",
+            "description": "YOLOv10-L model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov10/",
+            "size_bytes": 52425230,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov10l.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "yolov10x-coco-torch",
+            "base_filename": "yolov10x-coco.pt",
+            "description": "YOLOv10-X model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/yolov10/",
+            "size_bytes": 64395854,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov10x.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "rtdetr-l-coco-torch",
+            "base_filename": "rtdetr-l-coco.pt",
+            "description": "RT-DETR-l model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/rtdetr/",
+            "size_bytes": 66511432,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/rtdetr-l.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneRTDETRModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "transformer"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "rtdetr-x-coco-torch",
+            "base_filename": "rtdetr-x-coco.pt",
+            "description": "RT-DETR-x model trained on COCO",
+            "source": "https://docs.ultralytics.com/models/rtdetr/",
+            "size_bytes": 135755662,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/rtdetr-x.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneRTDETRModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.2.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "transformer"],
+            "date_added": "2024-07-01 19:22:51"
+        },
+        {
+            "base_name": "yolov8s-world-torch",
+            "base_filename": "yolov8s-world.pt",
+            "description": "YOLOv8s-World model",
+            "source": "https://docs.ultralytics.com/models/yolo-world/",
+            "size_bytes": 27166882,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8s-world.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "zero-shot"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8m-world-torch",
+            "base_filename": "yolov8m-world.pt",
+            "description": "YOLOv8m-World model",
+            "source": "https://docs.ultralytics.com/models/yolo-world/",
+            "size_bytes": 58607810,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8m-world.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "zero-shot"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8l-world-torch",
+            "base_filename": "yolov8l-world.pt",
+            "description": "YOLOv8l-World model",
+            "source": "https://docs.ultralytics.com/models/yolo-world/",
+            "size_bytes": 95664610,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8l-world.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "zero-shot"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8x-world-torch",
+            "base_filename": "yolov8x-world.pt",
+            "description": "YOLOv8x-World model",
+            "source": "https://docs.ultralytics.com/models/yolo-world/",
+            "size_bytes": 147959522,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8x-world.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "zero-shot"],
+            "date_added": "2024-03-11 19:22:51"
+        },
+        {
+            "base_name": "yolov8n-obb-dotav1-torch",
+            "base_filename": "yolov8n-obb.pt",
+            "description": "YOLOv8n Oriented Bounding Box model",
+            "source": "https://docs.ultralytics.com/tasks/obb/",
+            "size_bytes": 6548034,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8n-obb.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOOBBModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "polylines", "obb"],
+            "date_added": "2024-04-05 19:22:51"
+        },
+        {
+            "base_name": "yolov8s-obb-dotav1-torch",
+            "base_filename": "yolov8s-obb.pt",
+            "description": "YOLOv8s Oriented Bounding Box model",
+            "source": "https://docs.ultralytics.com/tasks/obb/",
+            "size_bytes": 23245186,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8s-obb.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOOBBModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "polylines", "obb"],
+            "date_added": "2024-04-05 19:22:51"
+        },
+        {
+            "base_name": "yolov8m-obb-dotav1-torch",
+            "base_filename": "yolov8m-obb.pt",
+            "description": "YOLOv8m Oriented Bounding Box model",
+            "source": "https://docs.ultralytics.com/tasks/obb/",
+            "size_bytes": 53304682,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8m-obb.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOOBBModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "polylines", "obb"],
+            "date_added": "2024-04-05 19:22:51"
+        },
+        {
+            "base_name": "yolov8l-obb-dotav1-torch",
+            "base_filename": "yolov8l-obb.pt",
+            "description": "YOLOv8l Oriented Bounding Box model",
+            "source": "https://docs.ultralytics.com/tasks/obb/",
+            "size_bytes": 89504274,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8l-obb.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOOBBModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "polylines", "obb"],
+            "date_added": "2024-04-05 19:22:51"
+        },
+        {
+            "base_name": "yolov8x-obb-dotav1-torch",
+            "base_filename": "yolov8x-obb.pt",
+            "description": "YOLOv8x Oriented Bounding Box model",
+            "source": "https://docs.ultralytics.com/tasks/obb/",
+            "size_bytes": 139533138,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.1.0/yolov8x-obb.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLOOBBModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics>=8.1.0"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "torch", "yolo", "polylines", "obb"],
+            "date_added": "2024-04-05 19:22:51"
+        },
+        {
+            "base_name": "yolov8n-oiv7-torch",
+            "base_filename": "yolov8n-oiv7.pt",
+            "description": "Ultralytics YOLOv8n model trained on Open Images v7",
+            "source": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+            "size_bytes": 6534387,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8n-oiv7.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "oiv7", "torch", "yolo"],
+            "date_added": "2024-05-20 19:22:51"
+        },
+        {
+            "base_name": "yolov8s-oiv7-torch",
+            "base_filename": "yolov8s-oiv7.pt",
+            "description": "Ultralytics YOLOv8s model trained on Open Images v7",
+            "source": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+            "size_bytes": 22573363,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8s-oiv7.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "oiv7", "torch", "yolo"],
+            "date_added": "2024-05-20 19:22:51"
+        },
+        {
+            "base_name": "yolov8m-oiv7-torch",
+            "base_filename": "yolov8m-oiv7.pt",
+            "description": "Ultralytics YOLOv8m model trained Open Images v7",
+            "source": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+            "size_bytes": 52117635,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8m-oiv7.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "oiv7", "torch", "yolo"],
+            "date_added": "2024-05-20 19:22:51"
+        },
+        {
+            "base_name": "yolov8l-oiv7-torch",
+            "base_filename": "yolov8l-oiv7.pt",
+            "description": "Ultralytics YOLOv8l model trained Open Images v7",
+            "source": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+            "size_bytes": 87769683,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8l-oiv7.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "oiv7", "torch", "yolo"],
+            "date_added": "2024-05-20 19:22:51"
+        },
+        {
+            "base_name": "yolov8x-oiv7-torch",
+            "base_filename": "yolov8x-oiv7.pt",
+            "description": "Ultralytics YOLOv8x model trained Open Images v7",
+            "source": "https://docs.ultralytics.com/datasets/detect/open-images-v7",
+            "size_bytes": 136867539,
+            "manager": {
+                "type": "fiftyone.core.models.ModelManager",
+                "config": {
+                    "url": "https://github.com/ultralytics/assets/releases/download/v8.2.0/yolov8x-oiv7.pt"
+                }
+            },
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.ultralytics.FiftyOneYOLODetectionModel",
+                "config": {}
+            },
+            "requirements": {
+                "packages": [
+                    "torch>=1.7.0",
+                    "torchvision>=0.8.1",
+                    "ultralytics"
+                ],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "oiv7", "torch", "yolo"],
+            "date_added": "2024-05-20 19:22:51"
+        },
+        {
+            "base_name": "yolo-nas-torch",
+            "base_filename": null,
+            "version": null,
+            "description": "YOLO-NAS is an open-source training library for advanced computer vision models. It specializes in accuracy and efficiency, supporting tasks like object detection",
+            "source": "https://github.com/Deci-AI/super-gradients",
+            "size_bytes": null,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.super_gradients.TorchYoloNasModel",
+                "config": {
+                    "labels_path": "{{eta-resources}}/ms-coco-labels.txt",
+                    "output_processor_cls": "fiftyone.utils.torch.ClassifierOutputProcessor",
+                    "raw_inputs": true
+                }
+            },
+            "requirements": {
+                "packages": ["torch", "torchvision", "super-gradients"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["classification", "torch", "yolo"],
+            "date_added": "2024-01-06 08:51:14"
+        },
+        {
+            "base_name": "yolov5x-coco-torch",
+            "description": "Ultralytics YOLOv5x model trained on COCO",
+            "source": "https://pytorch.org/hub/ultralytics_yolov5",
+            "size_bytes": 360496,
+            "default_deployment_config_dict": {
+                "type": "fiftyone.utils.torch.TorchImageModel",
+                "config": {
+                    "entrypoint_fcn": "fiftyone.utils.torch.load_torch_hub_raw_model",
+                    "entrypoint_args": {
+                        "repo_or_dir": "ultralytics/yolov5",
+                        "model": "yolov5x",
+                        "pretrained": true
+                    },
+                    "output_processor_cls": "fiftyone.utils.ultralytics.UltralyticsOutputProcessor",
+                    "raw_inputs": true
+                }
+            },
+            "requirements": {
+                "packages": ["torch>=1.7.0", "torchvision>=0.8.1"],
+                "cpu": {
+                    "support": true
+                },
+                "gpu": {
+                    "support": true
+                }
+            },
+            "tags": ["detection", "coco", "torch", "yolo"],
+            "date_added": "2023-08-22 19:22:51"
+        }
+    ]
+}
